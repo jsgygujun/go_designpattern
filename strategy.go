@@ -6,6 +6,10 @@ import "fmt"
 // 定义一组算法，将每个算法封装起来，使它们之间可以互换
 // 通常可以和简单工厂模式组合起来使用，简单工厂模式用来创建具体的策略
 
+// Rules of Thumb 经验法则
+// 1. 策略模式和模版模式类似，只是粒度不同
+// 2. 策略模式让你改变一个对象的内脏，装饰者模式让你改变一个对象的皮肤
+
 type StrategyType int
 
 const (
@@ -15,23 +19,7 @@ const (
 
 // Strategy 策略接口
 type Strategy interface {
-	Exec(int, int) int
-}
-
-// Add 具体的策略实现
-type Add struct {
-}
-
-func (*Add) Exec(a, b int) int {
-	return a + b
-}
-
-// Reduce 具体的策略实现
-type Reduce struct {
-}
-
-func (*Reduce) Exec(a, b int) int {
-	return a - b
+	Apply(int, int) int
 }
 
 // Operator 策略的执行者
@@ -39,14 +27,30 @@ type Operator struct {
 	strategy Strategy
 }
 
-// SetStrategy 给策略的执行者设置具体的策略
+// SetStrategy 设置具体的策略
 func (o *Operator) SetStrategy(strategy Strategy) {
 	o.strategy = strategy
 }
 
-// Calculate 策略执行者执行策略
-func (o *Operator) Calculate(a, b int) int {
-	return o.strategy.Exec(a, b)
+// Operate 策略执行者执行策略
+func (o *Operator) Operate(a, b int) int {
+	return o.strategy.Apply(a, b)
+}
+
+// Add 具体的策略实现
+type Add struct {
+}
+
+func (*Add) Apply(a, b int) int {
+	return a + b
+}
+
+// Reduce 具体的策略实现
+type Reduce struct {
+}
+
+func (*Reduce) Apply(a, b int) int {
+	return a - b
 }
 
 // NewStrategy 根据策略类型创建具体的策略
