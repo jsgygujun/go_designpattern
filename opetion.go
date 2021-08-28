@@ -6,8 +6,8 @@ import "time"
 // cli, err := NewXXX(xxx, withXXX(), withXXX())
 // 其中 xxx 是必选配置, withXXX 则是可选配置
 const (
-	defaultTime    = 100 * time.Millisecond
-	defaultCaching = false
+	_defaultTime    = 100 * time.Millisecond
+	_defaultCaching = false
 )
 
 type Connection struct {
@@ -51,8 +51,8 @@ func withCaching(caching bool) Option {
 func NewConnection(addr string, opts ...Option) (*Connection, error) {
 	// 首先创建带有默认属性的 options 结构体
 	options := options{
-		timeout: defaultTime,
-		caching: defaultCaching,
+		timeout: _defaultTime,
+		caching: _defaultCaching,
 	}
 	// 根据提供的 opts 参数修改 options 结构体
 	for _, o := range opts {
