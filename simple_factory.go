@@ -5,8 +5,8 @@ import "fmt"
 type AnimalType int
 
 const (
-	AnimalTypeCat = 0
-	AnimalTypeDog = 1
+	AnimalTypeCat = iota + 1
+	AnimalTypeDog
 )
 
 type Animal interface {

@@ -13,8 +13,8 @@ import "fmt"
 type StrategyType int
 
 const (
-	StrategyTypeAdd    = 0
-	StrategyTypeReduce = 1
+	StrategyTypeAdd = iota + 1
+	StrategyTypeReduce
 )
 
 // Strategy 策略接口
