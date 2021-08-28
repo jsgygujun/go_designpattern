@@ -10,9 +10,9 @@ func TestOperator_Calculate(t *testing.T) {
 	assert.Nil(t, err)
 	operator := new(Operator)
 	operator.SetStrategy(strategy)
-	assert.Equal(t, 10, operator.Calculate(8, 2))
+	assert.Equal(t, 10, operator.Operate(8, 2))
 	strategy, err = NewStrategy(StrategyTypeReduce)
 	assert.Nil(t, err)
 	operator.SetStrategy(strategy)
-	assert.Equal(t, 6, operator.Calculate(8, 2))
+	assert.Equal(t, 6, operator.Operate(8, 2))
 }
