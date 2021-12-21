@@ -2,18 +2,20 @@ package go_designpattern
 
 import "sync"
 
-type singleton struct {
+// SingletonObject 单例对象
+type SingletonObject struct {
 }
 
 var (
-	SingletonIns *singleton
-	once         = &sync.Once{}
+	SingletonIns  *SingletonObject
+	singletonOnce = &sync.Once{}
 )
 
-func GetSingletonIns() *singleton {
+// GetSingletonIns 获取单例对象实例
+func GetSingletonIns() *SingletonObject {
 	if SingletonIns == nil {
-		once.Do(func() {
-			SingletonIns = &singleton{}
+		singletonOnce.Do(func() {
+			SingletonIns = &SingletonObject{}
 		})
 	}
 	return SingletonIns
